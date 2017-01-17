@@ -10,7 +10,10 @@ This is part 2 of the Great Rust Web Experiment. For Part 1 see [here](/rust/iro
 
 At this stage, the Nickel version is complete and at more-or-less feature parity with the Iron version. I'm finding I can copy almost all of the code verbatim, which is a nice surprise. And it turns out Nickel is surprisingly great too. I was kind of hoping it wouldn't be, because now that I've gotten the hang of Iron it'd be nice to say "yep and the others suck, I don't need to bother learning them". And having two great frameworks makes the final decision of which to use more difficult.
 
-For example, Nickel supports exactly what I wished Iron had: a quick and easy way to generate a common-case response. It adds a trait to a lot of types including `str`, `String`, a rendered template, etc. allowing you to call a `resp()` method on it, generating a successful response. So for example, in Iron you might have:
+- A paste of its [own source](http://45.62.211.238:3000/mY7zn) code, which you can see [syntax highlighted](http://45.62.211.238:3000/mY7zn/rs)
+- See it on [Github](https://github.com/ojensen5115/pastebin-nickel)
+
+Nickel supports exactly what I wished Iron had: a quick and easy way to generate a common-case response. It adds a trait to a lot of types including `str`, `String`, a rendered template, etc. allowing you to call a `resp()` method on it, generating a successful response. So for example, in Iron you might have:
 
 ```
 Ok(Response::with((Status::Ok, "Hello, World!")));
@@ -87,4 +90,6 @@ I was also didn't end up managing to serve failure staus codes with a response b
 
 Continuing in things-Nickel-does-that-I-wish-it-didn't, Nickel infers the content type of statically served files from the file extension. It also passes requests through directly, so requesting file "file.xyz" requires that the request be for "file.xyz" with whatever path you've set for your static files. As such, while the Iron version had its web upload form accessible at `/webupload`, the Nickel version of the application requires that the URL be `/webupload.html` (as doing otherwise results in the visitor downloading the HTML page).
 
-My overall impressions with Nickel are favorable -- in comparison, Iron is also definitely better documented than Nickel, but Nickel makes a number of common use cases a lot more convenient. Nickel also packages more functionality into the main Nickel crate (whereas with Iron you'll be `extern crate`ing a lot more things). Whether you like that or not is probably a matter of personal preference. When it comes down to it, Iron and Nickel are very similar. Switching from one to the other mostly just consists of altering function signatures and changing some small details, with the lion's share of your code remaining identical.
+My overall impressions with Nickel are favorable -- in comparison, Iron is also definitely better documented than Nickel, but Nickel makes a number of common use cases a lot more convenient. Nickel also packages more functionality into the main Nickel crate (whereas with Iron you'll be `extern crate`ing a lot more things) -- the flip side of that means that you have dependencies whether you want them or not, e.g. your HTTP server will require openssl regardless of whether you actually use it or not.
+
+When it comes down to it, Iron and Nickel are very similar. Switching from one to the other mostly just consists of altering function signatures and changing some small details, with the lion's share of your code remaining identical.
