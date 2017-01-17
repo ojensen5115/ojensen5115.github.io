@@ -1,0 +1,37 @@
+# Site settings
+title: Oliver's Development Musings
+url: "http://ojensen5115.github.io"    # the protocol and hostname of your site, eg. `http://laobubu.github.io`
+baseurl: "" # the prefix of your site uri, eg. `/jekyll-theme-EasyBook` or just one slash `/`
+#timezone: Asia/Chongqing
+description: >
+  I figured it was time I start keeping up a blog. This is it.
+
+# Your information
+email: ojensen5115@gmail.com
+author: Oliver Jensen
+avatar: "//www.gravatar.com/avatar/dca0ebacce0844b9d65f5322420c72a2?d=mm&s=135"
+profile: PhD Candidate at the University of Austin, passionate about security and privacy.
+twitter_username: ojensen5115
+github_username:  ojensen5115
+
+# Comment Service (Disqus or 多说)
+#  choose one and un-comment the line to active it
+#disqus_shortname: xxx   # get one: https://disqus.com/admin/signup/
+#duoshuo_shortname: xxx  # get one: http://duoshuo.com/create-site/
+
+permalink: /archivers/:title
+gems:
+ - jekyll-paginate
+ - jekyll-gist
+ - jemoji
+
+# Build settings
+paginate: 5
+paginate_path: "page:num"
+
+highlighter: rouge
+markdown: kramdown
+
+kramdown:
+  input: GFM
+  syntax_highlighter: rouge
