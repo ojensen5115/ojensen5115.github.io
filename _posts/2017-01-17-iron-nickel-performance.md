@@ -12,30 +12,36 @@ I used `wrk2` to run a series of benchmarks against both applications on my Dell
 
 Of note is that Nickel can handle up to 7 concurrent connections, while Iron handles up to 25. I'm not sure where these values are set, but I tailored the tests to these values. **As a result, this may be comparing apples to oranges.** I would greatly appreciate feedback on the matter, whether this test is fair and how to make it moreso.
 
+
+## Note: tweaking test parameters changed results significantly, so I'll have to do more analysis before making any kind of claims.
+<!--
+
 ## Iron
 
-`./wrk -c 25 -t 4 -d 30s -R 50000 http://localhost:3000/[request URI]`:
+`./wrk -c 25 -t 4 -d 30s -R 300000 http://localhost:3000/[request URI]`:
 
 | Type | URI | Logging | No Logging |
 |---|---|---|---|
-| Render Template | /            | 20.3 k req/s | 36.0 k req/s |
-| 404             | /nonexistant | 34.5 k req/s | 84.3 k req/s |
-| Static File     | /webupload   | 34.0 k req/s | 82.0 k req/s |
-| Retrieve Paste  | /mysrc       | 589 req/s    | 596 req/s    |
+| Render Template | /            | 25.5 k req/s | 37.3 k req/s |
+| 404             | /nonexistant | 42.1 k req/s | 86.4 k req/s |
+| Static File     | /webupload   | 41.6 k req/s | 80.8 k req/s |
+| Retrieve Paste  | /mysrc       | 594 req/s    | 596 req/s    |
 
 ## Nickel
 
-`./wrk -c 7 -t 4 -d 30s -R 50000 http://localhost:6767/[request URI]`:
+`./wrk -c 7 -t 4 -d 30s -R 300000 http://localhost:6767/[request URI]`:
 
 | Type | URI | Logging | No Logging |
 |---|---|---|---|
-| Render Template | /            | 20.0 k req/s | 31.2 k req/s |
-| 404             | /nonexistant | 31.2 k req/s | 31.2 k req/s |
-| Static File     | /webupload   | 31.1 k req/s | 31.2 k req/s |
-| Retrieve Paste  | /mysrc       | 124 req/s    | 124 req/s    |
+| Render Template | /               | 24.7 k req/s | 40.0 k req/s  |
+| 404             | /nonexistant    | 47.2 k req/s | 111.0 k req/s |
+| Static File     | /webupload.html | 43.5 k req/s | 101.5 k req/s |
+| Retrieve Paste  | /mysrc          | 99 req/s     | 99 req/s      |
 
 ## Comparison
 
 Iron seems to be somewhat faster than Nickel, although I'm not certain why that would be. In particular, the actual code driving retrieving pastes is identical, and given the numbers it seems to me that this code is the bottleneck (hence why this type of request is so much slower than the others) -- so why would Iron perform almost 5 times as well in this case? I am very curious about what's going on. Does this match other people's experiences?
 
 My primary conclusion with respect to Iron versus Nickel from a programming perspective was that it really doesn't matter. They're both great frameworks, they're both fairly immature, and most of the differences you'll come across when writing a simple application are very minor. They are both very fast. I have leaned towards prefering Iron, because I understand its middleware model more clearly and because I feel like I have more control, but if we're honest here it's also probably because I happened to pick it up first.
+
+-->
