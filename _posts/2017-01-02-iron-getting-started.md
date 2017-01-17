@@ -35,6 +35,14 @@ match params.find(&["data"]) {
 
 Not the cleanest looking code. I'm still not entirely sure how to get at query parameters (e.g. `/somepage?param=value`) but I didn't give it too much effort. I suppose in theory the language identifier for syntax highlighting ought to be a query parameter instead of a URL segment, but I find I don't actually care that much.
 
+Finally, creating actual responses is a little bit more verbose than I would like. It's
+
+```
+Ok(Response::with((status::Ok, "response body")))
+```
+
+When you break it down, it makes sense. The first `Ok` is because you're returning a `Result`, and you could instead return an `Err` in order to yield a 500 server error. `Response::with` allows you to construct an Iron response with a tuple (hence the `((` and `))`) specifying various attributes of the response. The `status::Ok` causes the response to carry a 200 staus code (other options include `status::BadRequest`, etc.). Finally the `response body` is just a string to represent what you want to send to the browser. So in summary, it all *makes sense*, but it would be nice to make the common case less verbose (e.g. something like `"response body".response()`).
+
 Surprisingly, I find I am *very* much enjoying a compiled language for web development. Coming from a PHP / Python background, the compiler has been fantastic in finding and making me fix a number of "classic" bugs you find in interpreted languages. Having these sorts of things enforced at compile time is a wonderful change from the old "everything explodes at runtime" standby that I'm so used to.
 
 Finally, there's something downright magical to a deployment process consisting of copying a binary to some host and running it. No dependencies, no runtimes, no *anything*. Just copy, execute, and sit back.
