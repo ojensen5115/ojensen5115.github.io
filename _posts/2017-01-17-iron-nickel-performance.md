@@ -6,7 +6,7 @@ categories: rust web iron nickel performance
 permalink: /rust/performance-nickel-vs-iron
 ---
 
-This is part 3 of the Great Rust Web Experiment. See [Part 1](/rust/iron-getting-started) about Iron, and [Part 2](/rust/nickel-getting-started) about Nickel. In short, I've built the same relatively small web-application in Rust using both Iron and Nickel, in order to get a feel for both frameworks and determine which framework I prefer. But now that I have the identical application written using both frameworks, we have an opportunity to see how they compare, performance wise.
+This is part 3 of the Great Rust Web Experiment. See [Part 1](/rust/iron-getting-started) about Iron, and [Part 2](/rust/nickel-getting-started) about Nickel, and how it compares to Iron. In short, I've built the same relatively small web-application in Rust using both Iron and Nickel, in order to get a feel for both frameworks and determine which framework I prefer. But now that I have the identical application written using both frameworks, we have an opportunity to see how they compare, performance wise.
 
 I used `wrk2` to run a series of benchmarks against both applications on my Dell XPS 13 laptop (with an i5 processor), and measured the number of requests per second that each application was able to field over a 30 second test. Both applications have logging middleware which prints a line to the console (timestamp, IP, request uri) for every request, and all tests were run twice -- once normally, and once with this `println!()` line commented out (in case printing to the console caused slowdown).
 
