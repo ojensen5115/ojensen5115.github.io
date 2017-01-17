@@ -10,7 +10,7 @@ This is part 3 of the Great Rust Web Experiment. See [Part 1](/rust/iron-getting
 
 I used `wrk2` to run a series of benchmarks against both applications on my Dell XPS 13 laptop (with an i5 processor), and measured the number of requests per second that each application was able to field over a 30 second test. Both applications have logging middleware which prints a line to the console (timestamp, IP, request uri) for every request, and all tests were run twice -- once normally, and once with this `println!()` line commented out (in case printing to the console caused slowdown).
 
-Of note is that Nickel can handle up to 7 concurrent connections, while Iron is configured to handle up to 25. I'm not sure where these values are set, but I tailored the tests to take these values into account.
+Of note is that Nickel can handle up to 7 concurrent connections, while Iron handles up to 25. I'm not sure where these values are set, but I tailored the tests to these values. **As a result, this may be comparing apples to oranges.** I would greatly appreciate feedback on the matter, whether this test is fair and how to make it moreso.
 
 ## Iron
 
