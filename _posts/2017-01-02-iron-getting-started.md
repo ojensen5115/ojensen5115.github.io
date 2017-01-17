@@ -1,7 +1,7 @@
 ---
 layout: post
 title:  "Getting Started with Iron"
-date:   2016-12-23 22:37:45
+date:   2017-01-02 10:37:00
 categories: rust web iron
 permalink: /rust/iron-getting-started
 ---
