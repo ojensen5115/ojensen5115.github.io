@@ -19,6 +19,7 @@ Overall, my impressions are very favorable. Once you get the hang of how Iron de
 Getting access to request parameters is a little painful, though. In the easy case (when the parameter in question is a URL segment that you matched on in the routing), it essentially looks something like this:
 
 ```
+let params = req.extensions.get::<Router>().unwrap();
 let paste_id = &params.find("paste_id").unwrap_or("");
 ```
 
