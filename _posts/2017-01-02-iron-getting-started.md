@@ -27,15 +27,15 @@ Trying to grab POST parameters is a little more involved, and you'll need to pul
 
 ```
 let params = req.get_ref::<Params>().unwrap();
-match params.find(&["data"]) {
+let data = match params.find(&["data"]) {
     Some(&Value::String(ref data)) => data.clone().to_string(),
-    _ => return Ok(Response::with((status::BadRequest, "No paste data submitted.\n")))
+    _ => return Ok(Response::with((status::BadRequest, "No data.\n")))
 }
 ```
 
-Not the cleanest looking code. I'm still not entirely sure how to get at query parameters (e.g. `/somepage?param=value`) but I didn't give it too much effort. I suppose in theory the language identifier for syntax highlighting ought to be a query parameter instead of a URL segment, but I find I don't actually care that much.
+Not the cleanest looking code. I'm still not entirely sure how to get at query parameters (e.g. `/somepage?param=value`) but I didn't give it too much effort. I suppose in theory the language identifier for syntax highlighting ought to be a query parameter instead of a URL segment, but I find I don't actually care that much. Query parameters seem pretty out of favor SEO-wise anyway.
 
-Finally, creating actual responses is a little bit more verbose than I would like. It's
+Creating actual responses is also a little bit more verbose than I would like. It's
 
 ```
 Ok(Response::with((status::Ok, "response body")))
@@ -43,6 +43,8 @@ Ok(Response::with((status::Ok, "response body")))
 
 When you break it down, it makes sense. The first `Ok` is because you're returning a `Result`, and you could instead return an `Err` in order to yield a 500 server error. `Response::with` allows you to construct an Iron response with a tuple (hence the `((` and `))`) specifying various attributes of the response. The `status::Ok` causes the response to carry a 200 staus code (other options include `status::BadRequest`, etc.). Finally the `response body` is just a string to represent what you want to send to the browser. So in summary, it all *makes sense*, but it would be nice to make the common case less verbose (e.g. something like `"response body".response()`).
 
-Surprisingly, I find I am *very* much enjoying a compiled language for web development. Coming from a PHP / Python background, the compiler has been fantastic in finding and making me fix a number of "classic" bugs you find in interpreted languages. Having these sorts of things enforced at compile time is a wonderful change from the old "everything explodes at runtime" standby that I'm so used to.
+All that being said, it's been a fantastic experience and I'm itching to write more web code in Rust. A lot of the "normal" ecosystem isn't built out yet, so you won't find CSRF protection middleware etc., but writing middleware in Iron is very easy and I know enough about web security to write a good CSRF protection middleware myself.
+
+Surprisingly, I find I am *very* much enjoying a compiled language for web development. Coming from a PHP / Python background, the compiler has been fantastic in finding and making me fix a number of "classic" bugs you find in interpreted languages. Having these sorts of things enforced at compile time is a wonderful change from the old "everything explodes at runtime" standby that I'm so used to. I was also introduced to the wonders of [semver](http://semver.org/) when Iron pushed breaking changes mid-way through development -- I didn't even notice, because it didn't affect me in the slightest.
 
 Finally, there's something downright magical to a deployment process consisting of copying a binary to some host and running it. No dependencies, no runtimes, no *anything*. Just copy, execute, and sit back.
