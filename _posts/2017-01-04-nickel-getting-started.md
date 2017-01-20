@@ -10,7 +10,7 @@ This is part 2 of the Great Rust Web Experiment. For Part 1 see [here](/rust/iro
 
 At this stage, the Nickel version is complete and at more-or-less feature parity with the Iron version. I'm finding I can copy almost all of the code verbatim, which is a nice surprise. And it turns out Nickel is surprisingly great too. I was kind of hoping it wouldn't be, because now that I've gotten the hang of Iron it'd be nice to say "yep and the others suck, I don't need to bother learning them". And having two great frameworks makes the final decision of which to use more difficult.
 
-- A paste of its [own source](http://45.62.211.238:3000/mY7zn) code, which you can see [syntax highlighted](http://45.62.211.238:3000/mY7zn/rs)
+- A paste of its [own source](http://45.62.211.238:3000/messH) code, which you can see [syntax highlighted](http://45.62.211.238:3000/messH/rs)
 - See it on [Github](https://github.com/ojensen5115/pastebin-nickel)
 
 Nickel supports exactly what I wished Iron had: a quick and easy way to generate a common-case response. It adds a trait to a lot of types including `str`, `String`, a rendered template, etc. allowing you to call a `resp()` method on it, generating a successful response. So for example, in Iron you might have:

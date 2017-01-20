@@ -11,7 +11,7 @@ After having dealt with far too much PHP, and finding python frameworks like Dja
 The application is a simple Pastebin clone, designed primarily for use with `curl` but which will also work (to a limited extent) via browser. It supports submitting, deleting, editing, and retrieving pastes (with optional syntax highlighting).
 
 - See a [live demo](http://45.62.211.238:3000/).
-- I pasted its [own source code](http://45.62.211.238:3000/8sIze) to it, which you can also see [syntax highlighted](http://45.62.211.238:3000/8sIze/rs).
+- I pasted its [own source code](http://45.62.211.238:3000/nCaak) to it, which you can also see [syntax highlighted](http://45.62.211.238:3000/nCaak/rs).
 - See it on [Github](https://github.com/ojensen5115/pastebin-iron).
 
 Overall, my impressions are very favorable. Once you get the hang of how Iron deals with a request, and sort out how to piece components together, it's surprisingly pleasant to use. Implementing your own middleware is also very easy (see LoggingMiddleware). I like that all templates are loaded at startup time. I also like how it's really just a Rust program that happens to do some webstuff, so things like spawning a thread to cull old pastes is almost trivial.
