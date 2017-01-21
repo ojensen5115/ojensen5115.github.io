@@ -1,0 +1,51 @@
+https://keybase.io/ojensen
+--------------------------------------------------------------------
+
+I hereby claim:
+
+  * I am an admin of https://ojensen5115.github.io
+  * I am ojensen (https://keybase.io/ojensen) on keybase.
+  * I have a public key ASAuLD2CXRtnszMr93HFsNlNqy29-cPtP8BsPOslg_QiTQo
+
+To do so, I am signing this object:
+
+{
+    "body": {
+        "key": {
+            "eldest_kid": "0101204e9c4ccd475a089c3c5cd175b0fb4d9d5d79f45257fb28e8de9a93b46045770a",
+            "host": "keybase.io",
+            "kid": "01202e2c3d825d1b67b3332bf771c5b0d94dab2dbdf9c3ed3fc06c3ceb2583f4224d0a",
+            "uid": "e18a07ee9fff26dbc7ab7feac6144e19",
+            "username": "ojensen"
+        },
+        "service": {
+            "hostname": "ojensen5115.github.io",
+            "protocol": "https:"
+        },
+        "type": "web_service_binding",
+        "version": 1
+    },
+    "client": {
+        "name": "keybase.io go client",
+        "version": "1.0.17"
+    },
+    "ctime": 1485041364,
+    "expire_in": 504576000,
+    "merkle_root": {
+        "ctime": 1485041165,
+        "hash": "b3249f0152e5ad634fb8000eae8d967a14a581cad89a24836ee821f3b86154bfd1240186071794a08e6eeff2e4f15d9b6bbf61b3b6076416d847468c5151851f",
+        "seqno": 810721
+    },
+    "prev": "2be2b9d6b46f9dce2b9c1075b6e355584a422f1b6c8f87d1531a0be15aab66ce",
+    "seqno": 44,
+    "tag": "signature"
+}
+
+which yields the signature:
+
+hKRib2R5hqhkZXRhY2hlZMOpaGFzaF90eXBlCqNrZXnEIwEgLiw9gl0bZ7MzK/dxxbDZTastvfnD7T/AbDzrJYP0Ik0Kp3BheWxvYWTFAv17ImJvZHkiOnsia2V5Ijp7ImVsZGVzdF9raWQiOiIwMTAxMjA0ZTljNGNjZDQ3NWEwODljM2M1Y2QxNzViMGZiNGQ5ZDVkNzlmNDUyNTdmYjI4ZThkZTlhOTNiNDYwNDU3NzBhIiwiaG9zdCI6ImtleWJhc2UuaW8iLCJraWQiOiIwMTIwMmUyYzNkODI1ZDFiNjdiMzMzMmJmNzcxYzViMGQ5NGRhYjJkYmRmOWMzZWQzZmMwNmMzY2ViMjU4M2Y0MjI0ZDBhIiwidWlkIjoiZTE4YTA3ZWU5ZmZmMjZkYmM3YWI3ZmVhYzYxNDRlMTkiLCJ1c2VybmFtZSI6Im9qZW5zZW4ifSwic2VydmljZSI6eyJob3N0bmFtZSI6Im9qZW5zZW41MTE1LmdpdGh1Yi5pbyIsInByb3RvY29sIjoiaHR0cHM6In0sInR5cGUiOiJ3ZWJfc2VydmljZV9iaW5kaW5nIiwidmVyc2lvbiI6MX0sImNsaWVudCI6eyJuYW1lIjoia2V5YmFzZS5pbyBnbyBjbGllbnQiLCJ2ZXJzaW9uIjoiMS4wLjE3In0sImN0aW1lIjoxNDg1MDQxMzY0LCJleHBpcmVfaW4iOjUwNDU3NjAwMCwibWVya2xlX3Jvb3QiOnsiY3RpbWUiOjE0ODUwNDExNjUsImhhc2giOiJiMzI0OWYwMTUyZTVhZDYzNGZiODAwMGVhZThkOTY3YTE0YTU4MWNhZDg5YTI0ODM2ZWU4MjFmM2I4NjE1NGJmZDEyNDAxODYwNzE3OTRhMDhlNmVlZmYyZTRmMTVkOWI2YmJmNjFiM2I2MDc2NDE2ZDg0NzQ2OGM1MTUxODUxZiIsInNlcW5vIjo4MTA3MjF9LCJwcmV2IjoiMmJlMmI5ZDZiNDZmOWRjZTJiOWMxMDc1YjZlMzU1NTg0YTQyMmYxYjZjOGY4N2QxNTMxYTBiZTE1YWFiNjZjZSIsInNlcW5vIjo0NCwidGFnIjoic2lnbmF0dXJlIn2jc2lnxECDedgquCubNtpmxZ8MLmOssZGOc7MYg5gNHahrvIlkIeViIhuSNVJmWgM7h2VC/L+52gWiIiCqDyzpHNOXjCsBqHNpZ190eXBlIKRoYXNogqR0eXBlCKV2YWx1ZcQgcBKAV6UWUCbtpN/qpn1OUEzCtYBxN8g7utTZHyRTfgOjdGFnzQICp3ZlcnNpb24B
+
+And finally, I am proving ownership of this host by posting or
+appending to this document.
+
+View my publicly-auditable identity here: https://keybase.io/ojensen
