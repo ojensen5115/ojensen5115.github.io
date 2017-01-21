@@ -2,7 +2,7 @@
 layout: post
 title:  "Getting Started with Nickel"
 date:   2017-01-04 10:09:00
-categories: rust web iron
+categories: rust web nickel iron
 permalink: /rust/nickel-getting-started
 ---
 
