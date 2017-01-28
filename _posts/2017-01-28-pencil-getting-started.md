@@ -85,7 +85,7 @@ My initial attempt at trying to `cargo build` it failed:
 
     command did not execute successfully, got: exit code: 1
 
-I haven't run updates on my laptop in a little while, so giving it the old `apt update && apt upgrade` seems like alikely fix.
+I haven't run updates on my laptop in a little while, so giving it the old `apt update && apt upgrade` seems like a likely fix.
 After allowing the upgrades to install, `cargo build` continues to fail with the same error.
 Even `apt dist-upgrade` does not resolve the issue.
 Perhaps this *isn't* my fault after all?
