@@ -85,17 +85,17 @@ My initial attempt at trying to `cargo build` it failed:
 
     command did not execute successfully, got: exit code: 1
 
-I suspect this means that my installed version of OpenSSL is out of date.
-I'm on a Debian system here, so lets do an `apt update && apt upgrade`.
+I haven't run updates on my laptop in a little while, so giving it the old `apt update && apt upgrade` seems like alikely fix.
 After allowing the upgrades to install, `cargo build` continues to fail with the same error.
 Even `apt dist-upgrade` does not resolve the issue.
-Time to dig a little bit deeper.
+Perhaps this *isn't* my fault after all?
 
-Checking the `Cargo.lock` file, it looks like Pencil currently depends on [Hyper](https://github.com/hyperium/hyper) version 0.9.17.
+Looking through the `Cargo.lock` file, the current version of Pencil depends on [Hyper](https://github.com/hyperium/hyper) version 0.9.17.
 This in turn depends on the openssl crate version 0.7.14, two minor versions out of date (the current version is 0.9.6).
 Unfortunately, it looks like my installed version of OpenSSL may be *too new* to work with this.
 
-It looks like I'll have to wait on playing with Pencil until it updates to using a newer version of Hyper.
+As far as I can tell, there's no easy fix for this, besides waiting for Pencil to update to using a newer version of Hyper.
+This update contains breaking changes, and so won't be a trivial fix.
 
 <!--
 *Side Note: like Nickel and in contrast to Iron, Pencil requires dependencies that you may not be planning on using.
