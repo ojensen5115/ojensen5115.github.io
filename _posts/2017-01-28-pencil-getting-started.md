@@ -1,6 +1,6 @@
 ---
 layout: post
-title:  "(Not) Getting Started with Pencil"
+title:  "(Not Yet) Getting Started with Pencil"
 date:   2017-01-28 12:43:21
 categories: rust web pencil
 permalink: /rust/pencil-getting-started-compilation-issues
