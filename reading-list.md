@@ -12,7 +12,7 @@ Some deal with development, some deal with thinking, some deal with motivation, 
 This lists is mostly for myself so that I can find the links when referring someone to one of them, but you're welcome to peruse it yourself as well:
 
 
-#### Computer stuff
+### Computer stuff
 
 - [The Myth of RAM](http://www.ilikebigbits.com/blog/2014/4/21/the-myth-of-ram-part-i)
 - [Who Can Name the Bigger Number?](https://www.scottaaronson.com/writings/bignumbers.html)
@@ -24,7 +24,7 @@ This lists is mostly for myself so that I can find the links when referring some
 - [Learning to Code vs Learning Computer Science](https://shkspr.mobi/blog/2014/02/learning-to-code-vs-learning-computer-science/)
 - [The Night Watch (PDF)](https://www.usenix.org/system/files/1311_05-08_mickens.pdf)
 
-#### Humany stuff
+### Human stuff
 
 - [Sheep Logic](http://www.epsilontheory.com/sheep-logic/)
 - [Don't let your anger persist](https://www.julian.com/blog/persistent-anger)
