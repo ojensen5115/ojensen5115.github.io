@@ -1,9 +1,9 @@
 ---
 layout: post
 title:  "Oliver's Reading List"
-date:   2017-01-28 12:43:21
-categories: personal development reading articles
-permalink: /rust/olivers-reading-list
+date:   2018-07-13 00:26:21
+categories: musings personal development reading articles
+permalink: /musings/olivers-reading-list
 ---
 
 Over the years I've come across a number of documents that I've read that I believe should be required reading for every human being, for various reasons.
