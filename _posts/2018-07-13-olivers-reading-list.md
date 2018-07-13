@@ -14,30 +14,30 @@ This lists is mostly for myself so that I can find the links when referring some
 
 ### Being Human
 
-- [Don't let your anger persist](https://www.julian.com/blog/persistent-anger)
-- [Sheep Logic](http://www.epsilontheory.com/sheep-logic/)
-- [No, you're not entitled to your opinion](https://theconversation.com/no-youre-not-entitled-to-your-opinion-9978)
-- [What Developmental Milestones Are You Missing?](http://slatestarcodex.com/2015/11/03/what-developmental-milestones-are-you-missing/)
-- [6 Harsh Truths That Will Make You a Better Person](http://www.cracked.com/blog/6-harsh-truths-that-will-make-you-better-person/)
-- [Tact Filters](http://www.mit.edu/~jcb/tact.html)
+- [Don't let your anger persist](https://www.julian.com/blog/persistent-anger) [2016]
+- [Sheep Logic](http://www.epsilontheory.com/sheep-logic/) [2017]
+- [No, you're not entitled to your opinion](https://theconversation.com/no-youre-not-entitled-to-your-opinion-9978) [2012]
+- [What Developmental Milestones Are You Missing?](http://slatestarcodex.com/2015/11/03/what-developmental-milestones-are-you-missing/) [2015]
+- [6 Harsh Truths That Will Make You a Better Person](http://www.cracked.com/blog/6-harsh-truths-that-will-make-you-better-person/) [2012]
+- [Tact Filters](http://www.mit.edu/~jcb/tact.html) [1996]
 
 ### Being Technical
 
-- [The Myth of RAM](http://www.ilikebigbits.com/blog/2014/4/21/the-myth-of-ram-part-i) (also [part 2](http://www.ilikebigbits.com/blog/2014/4/28/the-myth-of-ram-part-ii) and [part 3](http://www.ilikebigbits.com/blog/2014/4/29/the-myth-of-ram-part-iii))
-- [Who Can Name the Bigger Number?](https://www.scottaaronson.com/writings/bignumbers.html)
-- [What Colour are your bits?](http://ansuz.sooke.bc.ca/entry/23)
-- [Don't Let the Computer Bully You](http://www.oualline.com/practical.programmer/bully.html)
-- [Web Design: The First 100 Years](http://idlewords.com/talks/web_design_first_100_years.htm)
-- [Tradeoffs in Cyber Security](http://geer.tinho.net/geer.uncc.9x13.txt)
-- [Programming Sucks](http://www.stilldrinking.org/programming-sucks)
-- [The Night Watch (PDF)](https://www.usenix.org/system/files/1311_05-08_mickens.pdf)
-- [Learning to Code vs Learning Computer Science](https://shkspr.mobi/blog/2014/02/learning-to-code-vs-learning-computer-science/)
+- [The Myth of RAM](http://www.ilikebigbits.com/blog/2014/4/21/the-myth-of-ram-part-i) (also [part 2](http://www.ilikebigbits.com/blog/2014/4/28/the-myth-of-ram-part-ii) and [part 3](http://www.ilikebigbits.com/blog/2014/4/29/the-myth-of-ram-part-iii)) [2014]
+- [Who Can Name the Bigger Number?](https://www.scottaaronson.com/writings/bignumbers.html) [1999]
+- [What Colour are your bits?](http://ansuz.sooke.bc.ca/entry/23) [2004]
+- [Don't Let the Computer Bully You](http://www.oualline.com/practical.programmer/bully.html) [2009]
+- [Web Design: The First 100 Years](http://idlewords.com/talks/web_design_first_100_years.htm) [2014]
+- [Tradeoffs in Cyber Security](http://geer.tinho.net/geer.uncc.9x13.txt) [2013]
+- [Programming Sucks](http://www.stilldrinking.org/programming-sucks) [2014]
+- [The Night Watch (PDF)](https://www.usenix.org/system/files/1311_05-08_mickens.pdf) [2013]
+- [Learning to Code vs Learning Computer Science](https://shkspr.mobi/blog/2014/02/learning-to-code-vs-learning-computer-science/) [2014]
 
 ### Being Political
 
-- [What is Propaganda?](https://sanromero.wordpress.com/2014/03/21/what-is-propaganda-part-1/)
-- [This Is How Your Fear and Outrage Are Being Sold for Profit](https://medium.com/@tobiasrose/the-enemy-in-our-feeds-e86511488de)
-- [PETA, Ferguson, jihad, Doctor Who, rape, and kitten pics: the toxoplasma of online rage](https://www.newstatesman.com/sci-tech/2015/01/peta-ferguson-jihad-doctor-who-rape-and-kitten-pics-toxoplasma-online-rage)
-- [I Don’t Know How To Explain To You That You Should Care About Other People](https://www.huffingtonpost.com/entry/i-dont-know-how-to-explain-to-you-that-you-should_us_59519811e4b0f078efd98440)
-- [The “Snowden is Ready to Come Home!” Story: a Case Study in Typical Media Deceit](https://theintercept.com/2015/03/04/snowden-wants-come-home-stories-case-study-media-deceit/)
-- [The Irrationality of Giving Up This Much Liberty to Fight Terror](https://www.theatlantic.com/politics/archive/2013/06/the-irrationality-of-giving-up-this-much-liberty-to-fight-terror/276695/)
+- [What is Propaganda?](https://sanromero.wordpress.com/2014/03/21/what-is-propaganda-part-1/) [2014]
+- [This Is How Your Fear and Outrage Are Being Sold for Profit](https://medium.com/@tobiasrose/the-enemy-in-our-feeds-e86511488de) [2017]
+- [PETA, Ferguson, jihad, Doctor Who, rape, and kitten pics: the toxoplasma of online rage](https://www.newstatesman.com/sci-tech/2015/01/peta-ferguson-jihad-doctor-who-rape-and-kitten-pics-toxoplasma-online-rage) [2015]
+- [I Don’t Know How To Explain To You That You Should Care About Other People](https://www.huffingtonpost.com/entry/i-dont-know-how-to-explain-to-you-that-you-should_us_59519811e4b0f078efd98440) [2017]
+- [The “Snowden is Ready to Come Home!” Story: a Case Study in Typical Media Deceit](https://theintercept.com/2015/03/04/snowden-wants-come-home-stories-case-study-media-deceit/) [2015]
+- [The Irrationality of Giving Up This Much Liberty to Fight Terror](https://www.theatlantic.com/politics/archive/2013/06/the-irrationality-of-giving-up-this-much-liberty-to-fight-terror/276695/) [2013]
