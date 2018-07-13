@@ -6,8 +6,8 @@ categories: musings personal development reading articles
 permalink: /musings/olivers-reading-list
 ---
 
-Over the years I've come across a number of documents that I've read that I believe should be required reading for every human being, for various reasons.
-Some deal with development, some deal with thinking, some deal with motivation, some are just plain interesting.
+Over the years I've come across a number of documents that I think are excellent, for various reasons.
+Some deal with development, some deal with thinking, some deal with motivation, some deal with computers, some are just plain interesting.
 
 This lists is mostly for myself so that I can find the links when referring someone to one of them, but you're welcome to peruse it yourself as well:
 
