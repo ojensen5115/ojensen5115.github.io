@@ -14,7 +14,7 @@ This lists is mostly for myself so that I can find the links when referring some
 
 ### Computer stuff
 
-- [The Myth of RAM](http://www.ilikebigbits.com/blog/2014/4/21/the-myth-of-ram-part-i)
+- [The Myth of RAM](http://www.ilikebigbits.com/blog/2014/4/21/the-myth-of-ram-part-i) (also parts [2](http://www.ilikebigbits.com/blog/2014/4/28/the-myth-of-ram-part-ii) and [3](http://www.ilikebigbits.com/blog/2014/4/29/the-myth-of-ram-part-iii))
 - [Who Can Name the Bigger Number?](https://www.scottaaronson.com/writings/bignumbers.html)
 - [Programming Sucks](http://www.stilldrinking.org/programming-sucks)
 - [What Colour are your bits?](http://ansuz.sooke.bc.ca/entry/23)
