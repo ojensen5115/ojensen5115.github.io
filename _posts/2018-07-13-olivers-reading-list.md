@@ -19,7 +19,6 @@ This lists is mostly for myself so that I can find the links when referring some
 - [2012] [No, you're not entitled to your opinion](https://theconversation.com/no-youre-not-entitled-to-your-opinion-9978)
 - [2015] [What Developmental Milestones Are You Missing?](http://slatestarcodex.com/2015/11/03/what-developmental-milestones-are-you-missing/)
 - [2012] [6 Harsh Truths That Will Make You a Better Person](http://www.cracked.com/blog/6-harsh-truths-that-will-make-you-better-person/)
-- [1996] [Tact Filters](http://www.mit.edu/~jcb/tact.html)
 
 ### Being Technical
 
