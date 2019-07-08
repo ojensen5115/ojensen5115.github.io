@@ -35,7 +35,7 @@ This lists is mostly for myself so that I can find the links when referring some
 
 ### Being Political
 
-- [2014] [What is Propaganda?](https://sanromero.wordpress.com/2014/03/21/what-is-propaganda-part-1/)
+- [2014] [What is Propaganda?](https://sanromero.wordpress.com/2014/03/21/what-is-propaganda-part-1/) ([archive](https://github.com/ojensen5115/ojensen5115.github.io/blob/master/collections/_archive/what-is-propaganda.md))
 - [2017] [This Is How Your Fear and Outrage Are Being Sold for Profit](https://medium.com/@tobiasrose/the-enemy-in-our-feeds-e86511488de)
 - [2015] [PETA, Ferguson, jihad, Doctor Who, rape, and kitten pics: the toxoplasma of online rage](https://www.newstatesman.com/sci-tech/2015/01/peta-ferguson-jihad-doctor-who-rape-and-kitten-pics-toxoplasma-online-rage)
 - [2017] [I Don’t Know How To Explain To You That You Should Care About Other People](https://www.huffingtonpost.com/entry/i-dont-know-how-to-explain-to-you-that-you-should_us_59519811e4b0f078efd98440)
