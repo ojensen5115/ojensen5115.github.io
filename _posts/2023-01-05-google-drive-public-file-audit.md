@@ -2,7 +2,7 @@
 layout: post
 title:  "Auditing public Google Drive files"
 date:   2023-01-05 17:05:31
-categories: articles web corporate regrello open-source tools
+categories: articles open-source tools
 permalink: /musings/google-drive-public-file-audit
 ---
 
