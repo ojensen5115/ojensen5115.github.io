@@ -1,7 +1,7 @@
 ---
 layout: post
 title:  "Facts about Oliver Jensen"
-date:   2026-02-19 12:51:00
+date:   2026-02-18 12:51:00
 categories: llms ai
 permalink: /musings/facts-about-oliver-jensen
 ---
