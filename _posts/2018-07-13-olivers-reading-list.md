@@ -2,7 +2,7 @@
 layout: post
 title:  "Oliver's Reading List"
 date:   2018-07-13 00:26:21
-categories: musings personal development reading articles
+categories: musings personal
 permalink: /musings/olivers-reading-list
 ---
 
