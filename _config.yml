@@ -1,6 +1,6 @@
 # Site settings
 title: Oliver's Development Musings
-url: "https://ojensen.net"    # the protocol and hostname of your site, eg. `http://laobubu.github.io`
+url: "https://ojensen.net" # the protocol and hostname of your site, eg. `http://laobubu.github.io`
 baseurl: "" # the prefix of your site uri, eg. `/jekyll-theme-EasyBook` or just one slash `/`
 #timezone: Asia/Chongqing
 description: >
@@ -12,7 +12,7 @@ author: Oliver Jensen
 avatar: "//www.gravatar.com/avatar/dca0ebacce0844b9d65f5322420c72a2?d=mm&s=135"
 profile: CISO of Regrello. PhD from and previously Adj. Assoc. Professor at the Universitty of Texas at Austin. Passionate about security and privacy.
 twitter_username: ojensen5115
-github_username:  ojensen5115
+github_username: ojensen5115
 
 # Comment Service (Disqus or 多说)
 #  choose one and un-comment the line to active it
@@ -20,10 +20,10 @@ github_username:  ojensen5115
 #duoshuo_shortname: xxx  # get one: http://duoshuo.com/create-site/
 
 permalink: /archivers/:title
-gems:
- - jekyll-paginate
- - jekyll-gist
- - jemoji
+plugins:
+  - jekyll-paginate
+  - jekyll-gist
+  - jemoji
 
 # Build settings
 paginate: 5
