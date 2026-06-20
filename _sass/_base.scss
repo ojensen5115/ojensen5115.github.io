@@ -26,18 +26,21 @@ code {
 	color: #900;
 	background-color: #fff;
 	padding: 2px 5px;
-	border-radius: 5px;
+	border: 1px dashed #aab;
 }
 pre {
 	overflow-x: auto;
-	padding: 20px 50px;
+	padding: 20px 30px;
+	border: 1px dashed;
+	border-radius: 5px;
 }
 pre, pre code {
-	color: #fafafa;
-	background-color: #223;
+	color: #222;
+	background-color: #dde;
 }
 pre code {
-	padding: 0;	
+	padding: 0;
+	border: 0;
 }
 .hide {
     display: none;
@@ -56,14 +59,14 @@ table {
 		padding: 5px 15px;
 		margin: 0;
 	}
-	
+
 	th {
 		border-color: #555;
 		background: #555;
 		color: #eee;
 		font-weight:normal;
 	}
-	
+
 	tr:hover {
 		background: rgba(255,255,0,0.2);
 	}
