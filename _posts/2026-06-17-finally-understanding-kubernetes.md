@@ -25,15 +25,16 @@ Before we begin, here are some of the fundamental building blocks we'll be talki
 * **Volume/PersistentVolume:** storage that outlives a pod's lifecycle
 * **kubectl:** CLI application to interact with the cluster
 
-In this tutorial we will be using [kind](https://kind.sigs.k8s.io/) as our k8s implementation, backed by [docker](https://www.docker.com/).
 
 # Setup
+
+In this tutorial we will be using [kind](https://kind.sigs.k8s.io/) as our Kubernetes implementation, backed by [docker](https://www.docker.com/).
 
 Install [Docker Engine](https://docs.docker.com/engine/install) and make sure you're in the appropriate system groups to be able to run it without `sudo`. You do not need a Docker account, the desktop app, or any of their commercial or cloud offerings that the main website pushes.
 
 Next, create a project directory (e.g. `k8s-learning`).
 
-Finally, install k8s and the necessary software. If you're on [NixOS](https://nixos.org/) or otherwise have `nix` on your system, you can get a dev shell with everything you need by making file in your project directory called `flake.nix` with the following contents:
+Finally, install kubernetes and the necessary software. If you're on [NixOS](https://nixos.org/) or otherwise have `nix` on your system, you can get a dev shell with everything you need by making file in your project directory called `flake.nix` with the following contents:
 
 
     {
