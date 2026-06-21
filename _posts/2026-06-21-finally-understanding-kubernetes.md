@@ -1,7 +1,7 @@
 ---
 layout: post
 title:  "Finally understanding Kubernetes (part 1)"
-date:   2026-06-16 08:53:00
+date:   2026-06-21 08:53:00
 categories: Kubernetes infrastructure security
 permalink: /infra/understanding-k8s-1
 ---
@@ -191,7 +191,7 @@ Create a file called `manifests/pod.yaml` with the following contents:
             - containerPort: 80
 
 Pretty much every Kubernetes manifest is going to have roughly the same shape here:
-* `apiVersion` and `kind` identify what kind of object this is (i.e. a `Pod` from the `v1` API)
+* `apiVersion` and `kind` identify what kind of object this is (a `Pod` from the `v1` API)
 * `metadata` is how we'll identify what we're making
 * `spec` is the state we want to achieve (Kubernetes's job is to reconcile this with reality)
 
@@ -208,7 +208,7 @@ Now watch it come up:
 
 You'll see it go from `Pending` to `ContainerCreating` to `Running`. As before, you can get more detail about your pods via `kubectl get pods -o wide`.
 
-## Look at it
+## Look at your pod
 
 You can instruct Kubernetes to describe pretty much anything. In this case:
 
@@ -238,7 +238,9 @@ Now exit the pod and pull up its logs again: you'll see the GET request that it 
 
 ## Interact with it over the network
 
-You currently have no ingress into your Kubernetes deployment, so you can't access it directly from your host's web browser. First lets note down the pod's IP address:
+You currently have no ingress into your Kubernetes deployment, so you can't access it directly from your host's web browser. But we can get around this problem by just spinning up another pod in the cluster, and accessing it from there instead.
+
+First lets note down the pod's IP address:
 
     kubectl get pods -o wide
 
@@ -289,7 +291,7 @@ Delete the pod again. This time, let's just target it directly:
 
 # Deployments & scaling
 
-In real life, you almost never create Pods directly. A pod is ephemeral. If the node dies, or if the pod is deleted, then it's gone. The purpose of a Deployment is to say "I want *n* replicas of this Pod template at any given time", and then Kubernetes continually works to reconcile this with reality.
+In real life, you almost never create Pods directly. A Pod is ephemeral. If the Node dies, or if the Pod is deleted, then it's gone. The purpose of a Deployment is to say "I want *n* replicas of this Pod template at any given time", and then Kubernetes continually works to reconcile this with reality.
 
 *Technically* a Deployment manages a ReplicaSet and the ReplicaSet manages the Pods, but you can pretty much just ignore the concept of a ReplicaSet and be ok.
 
@@ -382,7 +384,7 @@ While the Deployment sees events which describe the overall desired state, you n
 
 ## Clean up
 
-Rather than manually deleting your pods, replicaset, and deployment, we can just delete them all from the manifest:
+Rather than manually deleting your Pods, ReplicaSet, and Deployment, we can just delete them all from the manifest:
 
     kubectl delete -f manifests/deployment.yaml
 
@@ -400,7 +402,7 @@ The purpose of a Service is is to present "single unified thing" in front of a s
 
 ## Bring your deployment back
 
-You can just re-appyl the manifest:
+Bring it back by re-applying the manifest:
 
     kubectl apply -f manifests/deployment.yaml
     kubectl get pods -o wide
@@ -423,7 +425,7 @@ Create a file called `manifests/service-clusterip.yaml` with the following conte
         - port: 80
           targetPort: 80
 
-It's worth noting here that the `selector` here matches the labels applied to the Pods themselves, and *not* anything on the Deployment. Services know or care about Deployments, they sit in front of Pods directly. When it comes to ports, the `port` field is the port that the Service listens on, and `targetPort` is the port at which it will attempt to connect to the Pod.
+It's worth noting here that the `selector` here matches the labels applied to the *Pods* themselves, and *not* anything on the Deployment. Services don't know or care about Deployments, they sit in front of Pods directly.
 
 ## Make it so
 
@@ -437,7 +439,7 @@ Note that when you listed the services, you got two results: Kubernetes also exp
 
 In the `describe` output, look for the `Endpoints` field. You should see the IP/ports of your Pods. This is the live, continually-updated set of destinations that this service will balance load between.
 
-## Use the service
+## Use the Service
 
 Spin up another temporary busybox Pod:
 
@@ -445,7 +447,7 @@ Spin up another temporary busybox Pod:
     # ~~ now inside the temporary Pod ~~
     wget -O- nginx-svc
 
-You should once again see the nginx welcome page. CoreDNS resolved the `nginx-svc` name to the Service's IP address, which in turn forwarded the request to one of your replicas.
+You should once again see the nginx welcome page. We didn't have to select an individual Pod, or look up IP addresses, or anything like that: CoreDNS resolved the `nginx-svc` name to the Service's IP address, which in turn forwarded the request to one of your replicas.
 
 ## Kill some pods and try again
 
@@ -485,7 +487,7 @@ Apply your manifest and have a look at your services:
     kubectl apply -f manifests/nodeport.yaml
     kubectl get service nginx-svc
     
-This opens a specific port on every Node of your Kubernetes cluster, which forwards to the Service inside the cluster, which in turn forwards to an individual Pod. Recall that in a real Kubernetes environment, a Node is one of the worker machines running Kubernetes that is part of your cluster. As such, the Deployment is now accessible to anything that can reach your Kubernetes nodes.
+This opens a specific port on every Node of your Kubernetes cluster, which forwards to the Service inside the cluster, which in turn forwards to an individual Pod. Recall that in a real Kubernetes environment, a Node is one of the worker machines running Kubernetes that is part of your cluster. As such, the Deployment is now accessible to anything that can reach your Kubernetes Nodes.
 
 So under normal circumstances, you'd now be able to see the nginx welcome page in your computer's browser. *However*, `kind` does not expose external port mappings unless you specify them when creating the cluster, so we can't quite do that right now. But we can get close, by connecting to the Docker container that's runnign our Node, and interacting with the Service from there:
 
