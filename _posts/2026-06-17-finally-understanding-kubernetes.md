@@ -51,7 +51,7 @@ Finally, install kubernetes and the necessary software. If you're on [NixOS](htt
             packages = [
               pkgs.kind
               pkgs.kubectl
-              pkgs.Kubernetes-helm
+              pkgs.kubernetes-helm
             ];
           };
         };
@@ -59,7 +59,7 @@ Finally, install kubernetes and the necessary software. If you're on [NixOS](htt
 
 and activate it by running `nix develop`.
 
-Otherwise, take whatever steps you need to in order to install `kind`, `kubectl`, and `Kubernetes-helm`.
+Otherwise, take whatever steps you need to in order to install `kind`, `kubectl`, and `kubernetes-helm`.
 
 # Map of the territory
 
