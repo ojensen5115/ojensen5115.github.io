@@ -587,4 +587,4 @@ Delete your resources again:
 
 # Next steps
 
-Stay tuned for part 2!
+Check out [Part 2](/infra/understanding-k8s-2).
