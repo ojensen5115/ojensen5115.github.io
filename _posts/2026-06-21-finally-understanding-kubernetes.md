@@ -1,12 +1,14 @@
 ---
 layout: post
-title:  "Finally understanding Kubernetes (part 1)"
+title:  "Finally understanding Kubernetes (part 1 of 4)"
 date:   2026-06-21 08:53:00
 categories: Kubernetes infrastructure security
 permalink: /infra/understanding-k8s-1
 ---
 
-So you've made it to 2026 and you understand Docker containers to be "kinda like a VM, but not", and you've probably seen / had to use Kubernetes to some extent but don't really *get* it yet? And you'd like to? Then this post is for you. We'll talk through the fundamentals right up to what you can probably expect to see in a typical engineering org, and you'll run them yourself locally.
+So you've made it to 2026 and you understand Docker containers to be "kinda like a VM, but not really", and Kubernetes is "kinda deploy docker containers, but not really"... and you've probably seen / had to use Kubernetes to some extent, but don't really *get* it yet? And you'd like to? Then this post is for you.
+
+We'll talk through the fundamentals right up to what you can probably expect to see in a typical engineering org, and you'll run them yourself locally.
 
 # Glossary
 
@@ -65,23 +67,23 @@ Otherwise, take whatever steps you need to in order to install `kind`, `kubectl`
 
 We'll split this into four parts to keep things somewhat manageable. But here's the list of things we'll cover:
 
-* **Part 1 (you are here)**
-  * [Cluster setup](#cluster-setup)
-  * [First Pod](#first-pod)
-  * [Deployments & scaling](#deployments--scaling)
-  * [Services](#services)
-  * [Rolling updates & rollbacks](#rolling-updates--rollbacks)
-* Part 2 (coming soon)
-  * ConfigMaps & Secrets
-  * Multi-container pod
-  * Persistent storage
-  * Namespaces & resource limits
+* **Part 1 (you are here**
+  * [Cluster setup](/infra/understanding-k8s-1#cluster-setup)
+  * [First Pod](/infra/understanding-k8s-1#first-pod)
+  * [Deployments & scaling](/infra/understanding-k8s-1#deployments--scaling)
+  * [Services](/infra/understanding-k8s-1#services)
+  * [Rolling updates & rollbacks](/infra/understanding-k8s-1#rolling-updates--rollbacks)
+* [Part 2](/infra/understanding-k8s-2)
+  * [ConfigMaps & Secrets](/infra/understanding-k8s-2#configmaps--secrets)
+  * [Multi-container pod](/infra/understanding-k8s-2#multi-container-pod)
+  * [Persistent storage](/infra/understanding-k8s-2#persistent-storage)
+  * [StatefulSets](/infra/understanding-k8s-2#statefulset)
 * Part 3 (coming soon)
   * Ingress
   * Health
-  * StatefulSet
-* Part 4 (coming soon)
+  * Namespaces & resource limits
   * RBAC
+* Part 4 (coming soon)
   * Helm
   * Capstone
 
