@@ -394,7 +394,7 @@ While the Deployment sees events which describe the overall desired state, you n
 
 ## Clean up
 
-Rather than manually deleting your Pods, ReplicaSet, and Deployment, we can just delete them all from the manifest:
+Rather than manually deleting your Pods, ReplicaSet, and Deployment, we can just delete them all by referencing the manifest:
 
     kubectl delete -f manifests/deployment.yaml
 
@@ -406,13 +406,17 @@ Rather than manually deleting your Pods, ReplicaSet, and Deployment, we can just
 
 # Services
 
-When we interacted with our nginx Pod, we got the Pod's IP address and `curl` / `wgot` it using this IP address. When we spun up our Deployment, each pod had its own IP address, and when we killed a Pod and watched it get replaced, the replacement had a brand new IP address. 
+The purpose of a Service is is to present "single unified thing" in front of a shifting set of individual Pods making up a Deployment.
 
-The purpose of a Service is is to present "single unified thing" in front of a shifting set of individual Pods making up a Deployment. In practice, this takes the form of a stable address (IP and DNS bindings) and load balancing across replicas.
+When we first interacted with our nginx Pod, we used `curl` / `wget` to access it using the Pod's IP address.
+
+When we spun up our Deployment, we saw each pod had its own IP address. We could select one to communicate with if we wanted to, but we don't particularly care which replica fields our request. Moreover, when we killed a Pod from the Deployment and watched it get replaced, we saw that IP addresses are as ephemeral as the Pods themselves.
+
+A Service solves this problem. In practice, it takes the form of a stable address (both IP address and DNS bindings), and performs load balancing across replicas.
 
 ## Bring your deployment back
 
-Bring it back by re-applying the manifest:
+Re-applying the manifest to get your nginx Deployment back:
 
     kubectl apply -f manifests/deployment.yaml
     kubectl get pods -o wide
@@ -471,11 +475,13 @@ Go ahead and ship-of-Theseus your Deployment by deleting the original versions o
 In spite of the fact that we've cycled every pod and have a brand new set of IP addresses, we can still interact with the logical service without interruption through the Service's DNS name.
 
 
-## Try out NodePort
+## Access from outside
 
 A ClusterIP service is only accessible from inside the Kubernetes cluster. But sometimes you want to expose a service to outside the cluster. If you've got an HTTP service you're likely going to want to use Ingress, but NodePort can be useful in particular if you have a non-HTTP service you want to expose.
 
-Copy your `service-clusterip.yaml` file to `manifests/service-nodeport.yaml` and then change `spec.type` from `ClusterIP` to `NodePort`, and then add a `nodePort` value of `30080` to the `spec.ports`. The file should now look like this:
+Copy your `manifests/service-clusterip.yaml` file to `manifests/service-nodeport.yaml`.
+Then change `spec.type` from `ClusterIP` to `NodePort`, and then add a `nodePort` value of `30080` to the `spec.ports`.
+The file should now look like this:
 
     apiVersion: v1
     kind: Service
@@ -490,14 +496,14 @@ Copy your `service-clusterip.yaml` file to `manifests/service-nodeport.yaml` and
           targetPort: 80
           nodePort: 30080
 
-Specifying the `nodePort` value is optional -- leaving it off just has Kubernetes pick a port for you, but by specifying it  you'll have the same port as I do for the purpose of this tutorial which makes our lives a little easier.
+Specifying the `nodePort` value is optional -- leaving it off just has Kubernetes pick a port for you, but by specifying it you'll have the same port as I do which makes our lives a little easier for the purposes of this tutorial.
 
-Apply your manifest and have a look at your services:
+Apply your manifest and have a look at your service:
 
     kubectl apply -f manifests/nodeport.yaml
     kubectl get service nginx-svc
     
-This opens a specific port on every Node of your Kubernetes cluster, which forwards to the Service inside the cluster, which in turn forwards to an individual Pod. Recall that in a real Kubernetes environment, a Node is one of the worker machines running Kubernetes that is part of your cluster. As such, the Deployment is now accessible to anything that can reach your Kubernetes Nodes.
+When you deploy a NodePort service, it opens a specific port on every Node of your Kubernetes cluster, which forwards traffic to the Service inside the cluster. As such, the Deployment is now accessible to anything that can reach your Kubernetes Nodes.
 
 So under normal circumstances, you'd now be able to see the nginx welcome page in your computer's browser. *However*, `kind` does not expose external port mappings unless you specify them when creating the cluster, so we can't quite do that right now. But we can get close, by connecting to the Docker container that's runnign our Node, and interacting with the Service from there:
 
@@ -551,7 +557,7 @@ The `kubectl rollout status` command is handy because it blocks until the rollou
 
 ## Watch the ReplicaSet
 
-It's worth noting that while a deployment can be upgraded, the ReplicaSet (which is the thing that contains / manages the Pods) cannot. You can watch this in action. Edit your manifest to drop the image version back down to 1.25, and then right after you apply it, run this command a few times:
+It's worth noting that while the image in a Deployment can be upgraded, the ReplicaSet (which is the thing that contains / manages the Pods) cannot. See this for yourself: edit your manifest to drop the image version back down to 1.25, and then right after you apply it, run this command a few times:
 
     kubectl get replicaset
 
