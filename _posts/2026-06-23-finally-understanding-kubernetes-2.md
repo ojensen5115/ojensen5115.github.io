@@ -255,14 +255,14 @@ See how the writer has emitted the typical nginx startup loglines, but the reade
 
 Let's hop into the sidecar container:
 
-    kubectl exec -it sidecar-demo -c writer -- sh
+    kubectl exec -it sidecar-demo -c writer -- /bin/sh
     # ~~ inside the container ~~
     curl localhost:80
     exit
 
 As you would expect, you can see nginx's welcome page. Now try from the sidecar:
 
-    kubectl exec -it sidecar-demo -c sidecar -- sh
+    kubectl exec -it sidecar-demo -c sidecar -- /bin/sh
     # ~~ inside the container ~~
     wget -O- localhost:80
     ls /var/logs/nginx
@@ -289,7 +289,7 @@ If you need your containers to share their process namespaces (e.g. in case one 
 
 Exec into the nginx container and kill it:
 
-    kubectl exec -it sidecar-demo -c writer -- sh
+    kubectl exec -it sidecar-demo -c writer -- /bin/sh
     # ~~ inside the container ~~
     kill 1
     # ~~ note: the container gets killed ~~
@@ -388,7 +388,7 @@ Now you can see the PVC's status is "Bound", and the PV backing it was automatic
 
 Let's use our Pod to write a file in our PVC:
 
-    kubectl exec storage-test -- sh
+    kubectl exec storage-test -- /bin/sh
     # ~~ inside the Pod ~~
     echo "Hello there" > /data/test.txt
     exit
@@ -581,9 +581,9 @@ Look at the PVCs you created:
 
 You'll see three separate PVCs, each named for the Pod it is bound to. Now let's write something to them:
 
-    kubectl exec web-0 -- sh -c "echo 'aa' > /usr/share/nginx/html/index.html"
-    kubectl exec web-1 -- sh -c "echo 'bb' > /usr/share/nginx/html/index.html"
-    kubectl exec web-2 -- sh -c "echo 'cc' > /usr/share/nginx/html/index.html"
+    kubectl exec web-0 -- /bin/sh -c "echo 'aa' > /usr/share/nginx/html/index.html"
+    kubectl exec web-1 -- /bin/sh -c "echo 'bb' > /usr/share/nginx/html/index.html"
+    kubectl exec web-2 -- /bin/sh -c "echo 'cc' > /usr/share/nginx/html/index.html"
 
 and read them back
 
@@ -610,7 +610,7 @@ While a Pod's name is stable, it's not the same Pod. Let's redo our pod deletion
 As you can see, the IP address of the replacement pod is *not* the same.
 However, we still get stable addressability by virtue of each Pod getting its own stable DNS name:
 
-    kubectl run debug --image=busybox --rm -it -- sh
+    kubectl run debug --image=busybox --rm -it -- /bin/sh
     # ~~ inside the temporary container ~~
     nslookup web-0.web-headless.default.svc.cluster.local
     nslookup web-1.web-headless.default.svc.cluster.local

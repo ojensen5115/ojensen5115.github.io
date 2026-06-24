@@ -231,7 +231,7 @@ This will show the nginx webserver's startup log lines.
 
 First, we'll get a shell on our Pod:
 
-    kubectl exec -it nginx-test -- sh
+    kubectl exec -it nginx-test -- /bin/sh
     # ~~ inside the Pod ~~
     curl localhost:80
     exit
@@ -258,7 +258,7 @@ First lets note down the nginx Pod's IP address:
 
 Then we'll spin up a temporary pod inside our cluster:
 
-    kubectl run debug --image=busybox --rm -it -- sh
+    kubectl run debug --image=busybox --rm -it -- /bin/sh
 
 Note that busybox doesn't have `curl`, so we'll need to use `wget`. From inside the pod:
 
