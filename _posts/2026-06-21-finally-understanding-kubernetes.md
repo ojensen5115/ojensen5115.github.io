@@ -229,17 +229,24 @@ This will show the nginx webserver's startup log lines.
 
 ## Interact with it
 
-First, we'll get a shell on our new nginx-pod:
+First, we'll get a shell on our Pod:
 
     kubectl exec -it nginx-test -- sh
-
-Now that we're in, we can interact with the webserver. From inside the pod:
-
+    # ~~ inside the Pod ~~
     curl localhost:80
+    exit
 
-You should see the nginx welcome page.
+You should see the nginx welcome page. You can also just run `curl` directly without spinning up an interactive shell:
 
-Now exit the pod and pull up its logs again: you'll see the GET request that it just fielded.
+    kubectl exec nginx-test -- curl localhost:80
+
+Now pull up your Pod's logs again:
+
+    kubectl logs nginx-test
+
+You'll see the GET requests that it just fielded.
+
+
 
 ## Interact with it over the network
 
@@ -299,7 +306,7 @@ Delete the pod again:
 
 In real life, you almost never create Pods directly. A Pod is ephemeral. If the Node dies, or if the Pod is deleted, then it's gone. The purpose of a Deployment is to say "I want *n* replicas of this Pod template at any given time", and then Kubernetes continually works to reconcile this with reality.
 
-*Technically* a Deployment manages a ReplicaSet and the ReplicaSet manages the Pods, but you can pretty much just ignore the concept of a ReplicaSet and be ok.
+*Technically* a Deployment manages a ReplicaSet and the ReplicaSet manages the Pods, but you can mostly just ignore the concept of a ReplicaSet and be ok.
 
 ## Create your manifest
 
@@ -328,9 +335,6 @@ Create a file called `manifests/deployment.yaml` with the following contents:
 Compare this with the manifest for a Pod - you'll notice that `spec.template` is itself essentially a Pod manifest.
 
 Deployments do not themselves track which pods they spawn, which is what the `selector.matchLabels` is for: if any Pod has every label listed in a Deployment's `selector.matchLabels`, then it is considered part of the deployment.
-
-
-## Make it so
 
 Apply the manifest and look at what gets created:
 
@@ -433,8 +437,6 @@ Create a file called `manifests/service-clusterip.yaml` with the following conte
 
 It's worth noting here that the `selector` here matches the labels applied to the *Pods* themselves, and *not* anything on the Deployment. Services don't know or care about Deployments, they sit in front of Pods directly.
 
-## Make it so
-
 Apply the manifest then have a look:
 
     kubectl apply -f manifests/service-clusterip.yaml
@@ -462,9 +464,11 @@ Back on your host:
     kubectl delete pod [one of your pods]
     kubectl get pods -o wide
 
-Notice that the pod you killed is gone, and a new one with a new IP address spun up to take its place. Feel free to ship-of-Theseus your deployment and replace *all* of your pods in this manner. Then hop back into a temporary Pod and hit the service again like you did in the previous step, and see the nginx welcome page again.
+Notice that the pod you killed is gone, and a new one with a new and different IP address spun up to take its place.
 
-In spite of the fact that we've cycled every pod and have a brand new set of IP addresses, we can still interact with the logical service without interruption.
+Go ahead and ship-of-Theseus your Deployment by deleting the original versions of *all* of your pods. Then hop back into a temporary Pod and hit the service again like you did in the previous step, and see the nginx welcome page again.
+
+In spite of the fact that we've cycled every pod and have a brand new set of IP addresses, we can still interact with the logical service without interruption through the Service's DNS name.
 
 
 ## Try out NodePort
