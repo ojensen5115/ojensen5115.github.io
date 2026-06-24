@@ -6,6 +6,7 @@ categories: Kubernetes infrastructure security
 permalink: /infra/understanding-k8s-1
 ---
 
+
 So you've made it to 2026 and you understand Docker containers to be "kinda like a VM, but not really", and Kubernetes is "kinda deploy docker containers, but not really"... and you've probably seen / had to use Kubernetes to some extent, but don't really *get* it yet? And you'd like to? Then this post is for you.
 
 We'll talk through the fundamentals right up to what you can probably expect to see in a typical engineering org, and you'll run them yourself locally.
@@ -67,7 +68,7 @@ Otherwise, take whatever steps you need to in order to install `kind`, `kubectl`
 
 We'll split this into four parts to keep things somewhat manageable. But here's the list of things we'll cover:
 
-* **Part 1 (you are here**
+* **Part 1 (you are here)**
   * [Cluster setup](/infra/understanding-k8s-1#cluster-setup)
   * [First Pod](/infra/understanding-k8s-1#first-pod)
   * [Deployments & scaling](/infra/understanding-k8s-1#deployments--scaling)
@@ -86,6 +87,7 @@ We'll split this into four parts to keep things somewhat manageable. But here's 
 * Part 4 (coming soon)
   * Helm
   * Capstone
+
 
 
 
@@ -177,6 +179,8 @@ Our goal here is to Write a Pod manifest for nginx, and then apply it. We'll con
 
 ## Write your manifest
 
+We'll spin up an nginx webserver.
+
 Create a file called `manifests/pod.yaml` with the following contents:
 
     apiVersion: v1
@@ -206,9 +210,8 @@ First apply the manifest:
 Now watch it come up:
 
     kubectl get pods
-    kubectl get pods -w    # watches for changes live
 
-You'll see it go from `Pending` to `ContainerCreating` to `Running`. As before, you can get more detail about your pods via `kubectl get pods -o wide`.
+You can add a `-w` argument to the command above if you want to watch changes live (Ctrl-C to exit). You'll see it go from `Pending` to `ContainerCreating` to `Running`. As before, you can get more detail about your pods via `kubectl get pods -o wide`.
 
 ## Look at your pod
 
@@ -222,15 +225,15 @@ Now pull up its logs:
 
     kubectl logs nginx-test
 
-This will show nginx's startup log lines.
+This will show the nginx webserver's startup log lines.
 
 ## Interact with it
 
 First, we'll get a shell on our new nginx-pod:
 
-    kubectl exec -it nginx-test -- /bin/bash
+    kubectl exec -it nginx-test -- sh
 
-Now that we're in, we can see it working. From inside the pod:
+Now that we're in, we can interact with the webserver. From inside the pod:
 
     curl localhost:80
 
@@ -240,30 +243,30 @@ Now exit the pod and pull up its logs again: you'll see the GET request that it 
 
 ## Interact with it over the network
 
-You currently have no ingress into your Kubernetes deployment, so you can't access it directly from your host's web browser. But we can get around this problem by just spinning up another pod in the cluster, and accessing it from there instead.
+You currently have no ingress into your Kubernetes deployment, so you can't access it directly from your host's web browser. But we can get around this problem by just spinning up another temporary Pod in the cluster to use as a "jump host", and then interacting with our nginx Pod from there.
 
-First lets note down the pod's IP address:
+First lets note down the nginx Pod's IP address:
 
     kubectl get pods -o wide
 
 Then we'll spin up a temporary pod inside our cluster:
 
-    kubectl run debug --image=busybox --rm -it -- /bin/sh
+    kubectl run debug --image=busybox --rm -it -- sh
 
 Note that busybox doesn't have `curl`, so we'll need to use `wget`. From inside the pod:
 
     wget -O- [ip address from above]
 
-You should once again see the nginx welcome page.
+You should once again see the nginx welcome page, this time having queried it from a different Pod in your cluster.
 
-Now exit the pod, and you'll see that the pod was automatically deleted again (this was what the `--rm` flag did). If you check the nginx pod's logs again, you'll see another request in its logs, this time not from localhost.
+When you exit the temporary Pod, and you'll see that it gets automatically deleted (this was what the `--rm` flag did). Now if you check the nginx Pod's logs again, you'll see another request, this time not from localhost.
 
 
 ## Target an unavailable image
 
 Delete the pod:
 
-    kubectl delete -f manifests/pod.yaml
+    kubectl delete pod nginx-test
 
 then use `kubectl get pods` to confirm that it's gone.
 
@@ -279,9 +282,10 @@ In the events section at the bottom, you should see `ImagePullBackoff`. When Kub
 
 ## Clean up
 
-Delete the pod again. This time, let's just target it directly:
+Delete the pod again:
 
     kubectl delete pod nginx-test
+
 
 
 
@@ -585,6 +589,13 @@ Delete your resources again:
     kubectl delete -f manifest/deployment.yaml
     kubectl delete -f manifest/service-clusterip.yaml
 
+
+
+
+
+
+
+
 # Next steps
 
-Check out [Part 2](/infra/understanding-k8s-2).
+Check out [Part 2](/infra/understanding-k8s-2), where we'll dig into configuration and persistence.

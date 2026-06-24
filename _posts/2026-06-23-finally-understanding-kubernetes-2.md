@@ -37,7 +37,7 @@ You've probably seen / had to use Kubernetes to some extent, but maybe you don't
 
 # ConfigMaps & Secrets
 
-You don't want to bake environment-specific values (e.g. a database URL, an API credential, etc) into your container image, or hardcode them into the Pod specification. By injecting them at deploy time, you can have the same image running in dev / staging / production, with different config.
+You generally don't want to bake environment-specific values (e.g. a database URL, an API credential, etc) into your container image, or hardcode them into the Pod specification. Instead, you injecting them at deploy time -- this lets you have the same image running in dev / staging / production, with different configurations.
 
 ## Setup
 
@@ -51,9 +51,11 @@ And then we'll create a Secret:
     kubectl create secret generic app-secret --from-literal=DB_PASSWORD="zaphodbeeblebrox"
     kubectl get secret app-secret -o yaml
 
-Notice that while the Secret is not shown in plaintext, **the Secret is not encrypted,** just base64 encoded.
+Notice that while the Secret is not shown in plaintext, it is only base64 encoded.
 
-It's also worth noting that we did this imperatively insted of declaratively, and that your database password is now in your shell's history. We'll discuss those points shortly.
+**The Secret is not encrypted.**
+
+It's also worth noting that we did this imperatively insted of declaratively. And your database password is now in your shell's history, which also isn't great. We'll discuss those points in a bit.
 
 ## Consuming as env vars
 
@@ -92,9 +94,11 @@ Reading through that manifest, you can see that we're injecting those three valu
 
 You should see the two configuration values and the secret printed.
 
-Note that an environment variable is an environment variable: to the Pod, at this point, a value from a ConfigMap is indistinguishable from a value from a Secret.
+Also, while we are managing config values and the secret separately, to the Pod, values from a ConfigMap are indistinguishable from values from a Secret: after pod instantiation, they're all just strings in environment variables.
 
 ## Consuming as mounted files
+
+Configurations and secrets can also be made available to the Pod by way of mounted files. This may be preferable if you're in a situation where environment variables end up a little too visible for comfort (i.e. end up in logs when a crash happens, or similar).
 
 Create a file called `manifests/config-pod-volume.yaml` with the following contents:
 
@@ -120,12 +124,12 @@ Create a file called `manifests/config-pod-volume.yaml` with the following conte
           secret:
             secretName: app-secret
 
-This time, our ConfigMap and our Secret will be mounted as files, and then the pod is configured to just `cat` those files. So once again, let's apply it and check its logs to see the output:
+In this manifest we mount our ConfigMap and our Secret as directories, and we've set up our Pod to just `cat` their contents to stdout. So once again, let's apply it and check its logs to see the output:
 
     kubectl apply -f manifests/config-pod-volume.yaml
     kubectl logs config-test-vol
 
-Each key becomes a separate file in the mount path (e.g. `/etc/config/GREETING`, `/etc/config/APP_MODE`) with the value as the file contents. This is particularly useful for full configuration file rather than individual values (for example, mounting an entire `nginx.conf` as a single ConfigMap key).
+Each key becomes a separate file in the mount path (e.g. `/etc/config/GREETING`, `/etc/config/APP_MODE`) with the value as the file contents. In addition to keeping secrets out of environment variables, this is also particularly useful for full configuration files rather than individual values (e.g. mounting an entire `nginx.conf` as a single ConfigMap key).
 
 ## Changes do not propagate
 
@@ -138,7 +142,7 @@ Now check both pods:
     kubectl exec config-test -- env | grep GREETING
     kubectl exec config-test-vol -- cat /etc/config/GREETING
 
-Notice that the environment variables **do not auto-update** -- they were injected when the Container was started and are now frozen.
+Notice that the environment variables **do not auto-update** -- they were injected when the Container was started and are frozen for the lifetime of the Pod. If you want to update the value, you will need to delete and re-deploy the Pod.
 
 But the mounted file **eventually does update**. You likely saw the original greeting in both cases when you ran the commands above. But if you run the second one again now (or in a few moments) you'll get the updated greeting. Kubernetes periodically syncs mounted ConfigMap/Secret volumes every minute or so, without restarting the Pod.
 
@@ -166,7 +170,9 @@ You can also define your Secrets declaratively via a manifest:
 
 but you probably shouldn't: you don't want your plaintext (okay, base64 encoded) secrets committed to your source code repository. 
 
-Good practice for secrets here depends on how you want them loaded. Either encrypt the values before they are committed (e.g. [SOPS](https://github.com/getsops/sops) by Mozilla) if you want them in your repository, or use an external secrets manager like Vault / AWS Secrets Manager.
+Good practice for secrets here depends on where you want them stored. Either encrypt the values before they are committed (e.g. [SOPS](https://github.com/getsops/sops) by Mozilla) if you want them stored securely in your repository, or you can use an external secrets manager like Vault / AWS Secrets Manager.
+
+
 
 ## Clean up
 
