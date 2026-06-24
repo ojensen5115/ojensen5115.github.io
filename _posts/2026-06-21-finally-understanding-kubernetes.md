@@ -201,7 +201,7 @@ Pretty much every Kubernetes manifest is going to have roughly the same shape he
 * `metadata` is how we'll identify what we're making
 * `spec` is the state we want to achieve (Kubernetes's job is to reconcile this with reality)
 
-## Make it so
+## Create your Pod
 
 First apply the manifest:
 
@@ -308,7 +308,7 @@ In real life, you almost never create Pods directly. A Pod is ephemeral. If the 
 
 *Technically* a Deployment manages a ReplicaSet and the ReplicaSet manages the Pods, but you can mostly just ignore the concept of a ReplicaSet and be ok.
 
-## Create your manifest
+## Create a Deployment
 
 Create a file called `manifests/deployment.yaml` with the following contents:
 
