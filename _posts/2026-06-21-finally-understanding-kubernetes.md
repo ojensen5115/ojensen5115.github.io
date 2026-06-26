@@ -416,7 +416,7 @@ A Service solves this problem. In practice, it takes the form of a stable addres
 
 ## Bring your deployment back
 
-Re-applying the manifest to get your nginx Deployment back:
+Re-apply the manifest to get your nginx Deployment back:
 
     kubectl apply -f manifests/deployment.yaml
     kubectl get pods -o wide
@@ -439,7 +439,7 @@ Create a file called `manifests/service-clusterip.yaml` with the following conte
         - port: 80
           targetPort: 80
 
-It's worth noting here that the `selector` here matches the labels applied to the *Pods* themselves, and *not* anything on the Deployment. Services don't know or care about Deployments, they sit in front of Pods directly.
+It's worth noting here that the `selector` here matches the labels applied to the *Pods*, and *not* anything on the Deployment. Services don't know or care about Deployments, they sit in front of Pods directly.
 
 Apply the manifest then have a look:
 
@@ -459,7 +459,7 @@ Spin up another temporary busybox Pod:
     # ~~ now inside the temporary Pod ~~
     wget -O- nginx-svc
 
-You should once again see the nginx welcome page. We didn't have to select an individual Pod, or look up IP addresses, or anything like that: CoreDNS resolved the `nginx-svc` name to the Service's IP address, which in turn forwarded the request to one of your replicas.
+You should once again see the nginx welcome page. We didn't have to select an individual Pod, or look up IP addresses, or anything like that: CoreDNS resolved the `nginx-svc` name to the Service's IP address, which in turn forwarded the request to one of your replicas. You can peek at each of your Pods' logs if you want to see which one handled it.
 
 ## Kill some pods and try again
 
@@ -468,7 +468,7 @@ Back on your host:
     kubectl delete pod [one of your pods]
     kubectl get pods -o wide
 
-Notice that the pod you killed is gone, and a new one with a new and different IP address spun up to take its place.
+Notice that the Pod you killed is gone, and a new one with a new and different IP address spun up to take its place.
 
 Go ahead and ship-of-Theseus your Deployment by deleting the original versions of *all* of your pods. Then hop back into a temporary Pod and hit the service again like you did in the previous step, and see the nginx welcome page again.
 
@@ -503,9 +503,9 @@ Apply your manifest and have a look at your service:
     kubectl apply -f manifests/nodeport.yaml
     kubectl get service nginx-svc
     
-When you deploy a NodePort service, it opens a specific port on every Node of your Kubernetes cluster, which forwards traffic to the Service inside the cluster. As such, the Deployment is now accessible to anything that can reach your Kubernetes Nodes.
+When you deploy a NodePort service, it opens a specific port on every Node of your cluster, which forwards traffic to the Service inside the cluster. As such, the Deployment is now accessible to anything that can reach your Kubernetes Nodes.
 
-So under normal circumstances, you'd now be able to see the nginx welcome page in your computer's browser. *However*, `kind` does not expose external port mappings unless you specify them when creating the cluster, so we can't quite do that right now. But we can get close, by connecting to the Docker container that's runnign our Node, and interacting with the Service from there:
+So under normal circumstances, you'd now be able to see the nginx welcome page in your computer's browser. *However*, `kind` does not expose external port mappings unless you specify them when creating the cluster, so we can't quite do that right now. But we can get close, by connecting to the Docker container that's running our Node, and interacting with the Service from there:
 
     docker exec -it learning-control-plane /bin/sh
     # ~~ now inside the Node (docker container) ~~
@@ -532,7 +532,7 @@ Once again, this is easiest to do from our manifests:
 
 # Rolling updates & rollbacks
 
-In practice, you eventually want to change what's running in your cluster. Maybe you're upgrading nginx, or maybe pushing a new vesion of your code. Kubernetes has tools for doing this.
+You will eventually want to change what's running in your cluster. Maybe you're upgrading nginx, or maybe pushing a new vesion of your code. Kubernetes has tools for doing this.
 
 ## Launch your Deployment and Service
 
@@ -553,7 +553,7 @@ Now, edit `manifests/deployment.yaml` and change the image to `nginx:1.26`, then
     kubectl apply -f manifests/deployment.yaml && \
     kubectl rollout status deployment nginx-deploy
 
-The `kubectl rollout status` command is handy because it blocks until the rollout is complete, which is handy in an automation context.
+The `kubectl rollout status` command blocks until the rollout is complete, which is handy in an automation context.
 
 ## Watch the ReplicaSet
 
@@ -590,7 +590,7 @@ You'll probably see a handful of revisions from the various deploys you've done 
 
 The `rollout staus` command now terminates, and you can see you're back to running your full contingent of properly configured pods. 
 
-But notice that when you ran `rollout undo`, you got a warning. We just affected the status of the deployment imperatively, which means we have once again drifted away from what our manifest says. This is generally OK for emergency situations, but in general usage you'll want to be operating declaratively instead: editing your manifest and applying it rather than faffing around with things like `rollout undo` and so on.
+But notice that when you ran `rollout undo`, you got a warning. We just affected the status of the deployment imperatively, which means we have once again drifted away from what our manifest says. This is OK for emergency situations, but in general usage you'll want to be operating declaratively instead: editing your manifest and applying it rather than faffing around with things like `rollout undo` and so on.
 
 ## Clean up
 
